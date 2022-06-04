@@ -1,4 +1,4 @@
-"""Module containing the attributes for regexapp."""
+"""Module containing the attributes for regexpro."""
 
 from os import path
 from textwrap import dedent
@@ -10,7 +10,7 @@ import yaml
 
 __version__ = '0.3.8'
 version = __version__
-__edition__ = 'Community'
+__edition__ = 'Pro'
 edition = __edition__
 
 __all__ = [
@@ -38,13 +38,13 @@ class Data:
         PurePath(
             Path.home(),
             '.geekstrident',
-            'regexapp',
+            'regexpro',
             'user_references.yaml'
         )
     )
 
     # main app
-    main_app_text = 'RegexApp {} ({} Edition)'.format(version, edition)
+    main_app_text = 'RegexPro {}'.format(version)
 
     # packages
     pyyaml_text = 'pyyaml v{}'.format(yaml.__version__)
@@ -55,8 +55,7 @@ class Data:
     company_url = 'https://www.geekstrident.com/'
 
     # URL
-    repo_url = 'https://github.com/Geeks-Trident-LLC/regexapp'
-    # TODO: Need to update wiki page for documentation_url instead of README.md.
+    repo_url = 'https://github.com/Geeks-Trident-LLC/regexpro'
     documentation_url = path.join(repo_url, 'blob/develop/README.md')
     license_url = path.join(repo_url, 'blob/develop/LICENSE')
 
