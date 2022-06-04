@@ -239,8 +239,8 @@ class Cli:
     def run(self):
         """Take CLI arguments, parse it, and process."""
         show_dependency(self.options)
-        self.validate_cli_flags()
         run_gui_application(self.options)
+        self.validate_cli_flags()
         if not self.options.test_data:
             self.build_regex_pattern()
         self.run_test()
