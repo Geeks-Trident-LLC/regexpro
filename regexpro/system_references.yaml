@@ -260,7 +260,7 @@ word:
 words:
   group: word
   description: a pattern to match at least one word.
-  pattern: "[a-zA-Z0-9]+( [a-zA-Z0-9]+)*"
+  pattern: "[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*"
   positive test:
     pattern match words: "abc xyz"
   negative test:

@@ -162,7 +162,7 @@ class TestElementPattern:
             ('letter()', '[a-zA-Z]'),
             ('letters()', '[a-zA-Z]+'),
             ('word()', '[a-zA-Z0-9]+'),
-            ('words()', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*'),
+            ('words()', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*'),
             ('mixed_word()', '\\S*[a-zA-Z0-9]\\S*'),
             ('mixed_words()', '\\S*[a-zA-Z0-9]\\S*( \\S*[a-zA-Z0-9]\\S*)*'),
             ('phrase()', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)+'),
@@ -354,13 +354,13 @@ class TestElementPattern:
         [
             (
                 'words(head)',
-                '^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*',
-                '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*'
+                '^[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*',
+                '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*'
             ),
             (
                 'words(var_v1, head_whitespace)',
-                '^\\s*(?P<v1>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)',
-                '(?P<v1>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)'
+                '^\\s*(?P<v1>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)',
+                '(?P<v1>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)'
             ),
         ]
     )
@@ -379,13 +379,13 @@ class TestElementPattern:
         [
             (
                 'words(tail)',
-                '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$',
-                '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*'
+                '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*$',
+                '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*'
             ),
             (
                 'words(var_v1, tail_whitespace)',
-                '(?P<v1>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)\\s*$',
-                '(?P<v1>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)'
+                '(?P<v1>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)\\s*$',
+                '(?P<v1>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)'
             ),
         ]
     )
@@ -458,7 +458,7 @@ class TestLinePattern:
             (
                 'TenGigE0/0/0/1 is administratively down, line protocol is administratively down',      # noqa
                 'mixed_word(var_interface_name) is words(var_interface_status), line protocol is words(var_protocol_status)',   # noqa
-                '(?i)(?P<interface_name>\\S*[a-zA-Z0-9]\\S*) is (?P<interface_status>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*), line protocol is (?P<protocol_status>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)',    # noqa
+                '(?i)(?P<interface_name>\\S*[a-zA-Z0-9]\\S*) is (?P<interface_status>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*), line protocol is (?P<protocol_status>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)',    # noqa
                 False, False, True,
                 True
             ),
@@ -542,21 +542,21 @@ class TestLinePattern:
             (
                 'I live in ABC',                                        # test data
                 'I live in words(var_city, tail)',                     # user prepared data
-                '(?i)I live in (?P<city>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)$',        # expected pattern
+                '(?i)I live in (?P<city>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)$',        # expected pattern
                 False, False, True,
                 True
             ),
             (
                 'I live in ABC',                                        # test data
                 'I live in words(var_city, tail_ws)',                  # user prepared data
-                '(?i)I live in (?P<city>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)\\s*$',    # expected pattern
+                '(?i)I live in (?P<city>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)\\s*$',    # expected pattern
                 False, False, True,
                 True
             ),
             (
                 'I live in ABC \r\n',                                   # test data
                 'I live in words(var_city, tail_ws)',                  # user prepared data
-                '(?i)I live in (?P<city>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)\\s*$',    # expected pattern
+                '(?i)I live in (?P<city>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)\\s*$',    # expected pattern
                 False, False, True,
                 True
             ),
@@ -720,14 +720,14 @@ class TestLinePattern:
             (
                 ['cherry is good for health'],  # test data
                 'word() is words()',  # user prepared data
-                '^\\s*[a-zA-Z0-9]+ is [a-zA-Z0-9]+( [a-zA-Z0-9]+)*',  # expected pattern
-                '^\\s*[a-zA-Z0-9]+ is [a-zA-Z0-9]+( [a-zA-Z0-9]+)*',  # expected statement
+                '^\\s*[a-zA-Z0-9]+ is [a-zA-Z0-9]+( +[a-zA-Z0-9]+)*',  # expected pattern
+                '^\\s*[a-zA-Z0-9]+ is [a-zA-Z0-9]+( +[a-zA-Z0-9]+)*',  # expected statement
                 True, False, False,
             ),
             (
                 ['cherry is good for health'],  # test data
                 'word(var_fruit) is words(var_desc)',  # user prepared data
-                '^\\s*(?P<fruit>[a-zA-Z0-9]+) is (?P<desc>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)',  # expected pattern
+                '^\\s*(?P<fruit>[a-zA-Z0-9]+) is (?P<desc>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)',  # expected pattern
                 '^\\s*${fruit} is ${desc}',     # expected statement
                 True, False, False,
             ),
