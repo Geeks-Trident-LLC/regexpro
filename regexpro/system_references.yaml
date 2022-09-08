@@ -287,9 +287,9 @@ mixed_words:
 phrase:
   group: word
   description: a pattern to match a phrase, i.e. at least two words.
-  pattern: "[a-zA-Z0-9]+( [a-zA-Z0-9]+)+"
+  pattern: "[a-zA-Z0-9]+( +[a-zA-Z0-9]+)+"
   positive test:
-    pattern match a pharse: "abc xyz"
+    pattern match a phrase: "abc xyz"
   negative test:
     the phrase pattern can not match data: "abc"
 
