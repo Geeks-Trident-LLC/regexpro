@@ -1620,7 +1620,7 @@ class ElementPattern(str):
 
         item = lst[0]
         if is_phrase:
-            item = '{0}( {0})'.format(item)
+            item = '{0}( +{0})'.format(item)
         else:
             is_singular = ElementPattern.is_singular_pattern(item)
             item = item if is_singular else '({})'.format(item)
