@@ -162,11 +162,11 @@ class TestElementPattern:
             ('letter()', '[a-zA-Z]'),
             ('letters()', '[a-zA-Z]+'),
             ('word()', '[a-zA-Z0-9]+'),
-            ('words()', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*'),
+            ('words()', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*'),
             ('mixed_word()', '[\\x21-\\x7e]+'),
-            ('mixed_words()', '[\\x21-\\x7e]+( +[\\x21-\\x7e]+)*'),
-            ('phrase()', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)+'),
-            ('mixed_phrase()', '[\\x21-\\x7e]+( +[\\x21-\\x7e]+)+'),
+            ('mixed_words()', '[\\x21-\\x7e]+( [\\x21-\\x7e]+)*'),
+            ('phrase()', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)+'),
+            ('mixed_phrase()', '[\\x21-\\x7e]+( [\\x21-\\x7e]+)+'),
             ('hexadecimal()', '[0-9a-fA-F]'),
             ('hex()', '[0-9a-fA-F]'),
             ('octal()', '[0-7]'),
@@ -256,32 +256,32 @@ class TestElementPattern:
             ('word(0_or_1_occurrence)', '([a-zA-Z0-9]+)?'),
             ('word(var_v1, 0_or_1_occurrence)', '(?P<v1>([a-zA-Z0-9]+)?)'),
             ('word(var_v1, 0_or_1_occurrence, N/A)', '(?P<v1>([a-zA-Z0-9]+)?|N/A)'),
-            ('word(0_or_1_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)?'),
-            ('word(0_or_more_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*'),
-            ('word(1_or_more_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)+'),
-            ('word(3_or_more_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){3,}'),
-            ('word(at_least_0_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*'),
-            ('word(at_least_1_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){1,}'),
-            ('word(at_least_3_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){3,}'),
-            ('word(at_most_0_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)?'),
-            ('word(at_most_1_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){,1}'),
-            ('word(at_most_3_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){,3}'),
-            ('word(0_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)?'),
-            ('word(1_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)'),
-            ('word(3_phrase_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){3}'),
-            ('word(0_or_1_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)?'),
-            ('word(0_or_more_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*'),
-            ('word(1_or_more_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)+'),
-            ('word(3_or_more_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){3,}'),
-            ('word(at_least_0_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*'),
-            ('word(at_least_1_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){1,}'),
-            ('word(at_least_3_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){3,}'),
-            ('word(at_most_0_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)?'),
-            ('word(at_most_1_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){,1}'),
-            ('word(at_most_3_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){,3}'),
-            ('word(0_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)?'),
-            ('word(1_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)'),
-            ('word(3_group_occurrence)', '[a-zA-Z0-9]+( +[a-zA-Z0-9]+){3}'),
+            ('word(0_or_1_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)?'),
+            ('word(0_or_more_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*'),
+            ('word(1_or_more_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)+'),
+            ('word(3_or_more_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){3,}'),
+            ('word(at_least_0_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*'),
+            ('word(at_least_1_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){1,}'),
+            ('word(at_least_3_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){3,}'),
+            ('word(at_most_0_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)?'),
+            ('word(at_most_1_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){,1}'),
+            ('word(at_most_3_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){,3}'),
+            ('word(0_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)?'),
+            ('word(1_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)'),
+            ('word(3_phrase_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){3}'),
+            ('word(0_or_1_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)?'),
+            ('word(0_or_more_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*'),
+            ('word(1_or_more_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)+'),
+            ('word(3_or_more_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){3,}'),
+            ('word(at_least_0_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*'),
+            ('word(at_least_1_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){1,}'),
+            ('word(at_least_3_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){3,}'),
+            ('word(at_most_0_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)?'),
+            ('word(at_most_1_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){,1}'),
+            ('word(at_most_3_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){,3}'),
+            ('word(0_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)?'),
+            ('word(1_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+)'),
+            ('word(3_group_occurrence)', '[a-zA-Z0-9]+( [a-zA-Z0-9]+){3}'),
             ####################################################################
             # alternative or_ for repeating or occurring space                 #
             ####################################################################
@@ -376,13 +376,13 @@ class TestElementPattern:
         [
             (
                 'words(head)',
-                '^[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*',
-                '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*'
+                '^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*',
+                '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*'
             ),
             (
                 'words(var_v1, head_whitespace)',
-                '^\\s*(?P<v1>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)',
-                '(?P<v1>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)'
+                '^\\s*(?P<v1>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)',
+                '(?P<v1>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)'
             ),
         ]
     )
@@ -401,13 +401,13 @@ class TestElementPattern:
         [
             (
                 'words(tail)',
-                '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*$',
-                '[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*'
+                '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$',
+                '[a-zA-Z0-9]+( [a-zA-Z0-9]+)*'
             ),
             (
                 'words(var_v1, tail_whitespace)',
-                '(?P<v1>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)\\s*$',
-                '(?P<v1>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)'
+                '(?P<v1>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)\\s*$',
+                '(?P<v1>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)'
             ),
         ]
     )
@@ -480,7 +480,7 @@ class TestLinePattern:
             (
                 'TenGigE0/0/0/1 is administratively down, line protocol is administratively down',      # noqa
                 'mixed_word(var_interface_name) is words(var_interface_status), line protocol is words(var_protocol_status)',   # noqa
-                '(?i)(?P<interface_name>[\\x21-\\x7e]+) is (?P<interface_status>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*), line protocol is (?P<protocol_status>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)',    # noqa
+                '(?i)(?P<interface_name>[\\x21-\\x7e]+) is (?P<interface_status>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*), line protocol is (?P<protocol_status>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)',    # noqa
                 False, False, True,
                 True
             ),
@@ -564,21 +564,21 @@ class TestLinePattern:
             (
                 'I live in ABC',                                        # test data
                 'I live in words(var_city, tail)',                     # user prepared data
-                '(?i)I live in (?P<city>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)$',        # expected pattern
+                '(?i)I live in (?P<city>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)$',        # expected pattern
                 False, False, True,
                 True
             ),
             (
                 'I live in ABC',                                        # test data
                 'I live in words(var_city, tail_ws)',                  # user prepared data
-                '(?i)I live in (?P<city>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)\\s*$',    # expected pattern
+                '(?i)I live in (?P<city>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)\\s*$',    # expected pattern
                 False, False, True,
                 True
             ),
             (
                 'I live in ABC \r\n',                                   # test data
                 'I live in words(var_city, tail_ws)',                  # user prepared data
-                '(?i)I live in (?P<city>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)\\s*$',    # expected pattern
+                '(?i)I live in (?P<city>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)\\s*$',    # expected pattern
                 False, False, True,
                 True
             ),
@@ -690,14 +690,14 @@ class TestLinePattern:
             (
                 'file1.txt',  # test data
                 'mixed_words(var_file_name) data(->, or_empty) mixed_words(var_link_name, or_empty) end()',
-                '(?i)(?P<file_name>[\\x21-\\x7e]+( +[\\x21-\\x7e]+)*)\\s*(->|)\\s*(?P<link_name>([\\x21-\\x7e]+( +[\\x21-\\x7e]+)*)|)$',  # noqa
+                '(?i)(?P<file_name>[\\x21-\\x7e]+( [\\x21-\\x7e]+)*)\\s*(->|)\\s*(?P<link_name>([\\x21-\\x7e]+( [\\x21-\\x7e]+)*)|)$',  # noqa
                 False, False, True,
                 True
             ),
             (
                 "'My Documents' -> /c/Users/test/Documents/",  # test data
                 'mixed_words(var_file_name) data(->, or_empty) mixed_words(var_link_name, or_empty) end()',
-                '(?i)(?P<file_name>[\\x21-\\x7e]+( +[\\x21-\\x7e]+)*)\\s*(->|)\\s*(?P<link_name>([\\x21-\\x7e]+( +[\\x21-\\x7e]+)*)|)$',    # noqa
+                '(?i)(?P<file_name>[\\x21-\\x7e]+( [\\x21-\\x7e]+)*)\\s*(->|)\\s*(?P<link_name>([\\x21-\\x7e]+( [\\x21-\\x7e]+)*)|)$',    # noqa
                 False, False, True,
                 True
             ),
@@ -742,14 +742,14 @@ class TestLinePattern:
             (
                 ['cherry is good for health'],  # test data
                 'word() is words()',  # user prepared data
-                '^\\s*[a-zA-Z0-9]+ is [a-zA-Z0-9]+( +[a-zA-Z0-9]+)*',  # expected pattern
-                '^\\s*[a-zA-Z0-9]+ is [a-zA-Z0-9]+( +[a-zA-Z0-9]+)*',  # expected statement
+                '^\\s*[a-zA-Z0-9]+ is [a-zA-Z0-9]+( [a-zA-Z0-9]+)*',  # expected pattern
+                '^\\s*[a-zA-Z0-9]+ is [a-zA-Z0-9]+( [a-zA-Z0-9]+)*',  # expected statement
                 True, False, False,
             ),
             (
                 ['cherry is good for health'],  # test data
                 'word(var_fruit) is words(var_desc)',  # user prepared data
-                '^\\s*(?P<fruit>[a-zA-Z0-9]+) is (?P<desc>[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*)',  # expected pattern
+                '^\\s*(?P<fruit>[a-zA-Z0-9]+) is (?P<desc>[a-zA-Z0-9]+( [a-zA-Z0-9]+)*)',  # expected pattern
                 '^\\s*${fruit} is ${desc}',     # expected statement
                 True, False, False,
             ),

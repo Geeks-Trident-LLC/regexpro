@@ -105,27 +105,27 @@ ws:
   description: a pattern to match a character divider such as space, tab, newline, and more.
   pattern: "\\s"
   positive test:
-    pattern matches white space: " "
+    pattern matches whitespace: " "
   negative test:
-    the white space pattern can not match data: "."
+    the whitespace pattern can not match data: "."
 
 non_ws:
   group: character
   description: a pattern to match a character which is not a white space character.
   pattern: "\\S"
   positive test:
-    pattern matches non-white space: "a"
+    pattern matches non-whitespace: "a"
   negative test:
-    the non-white space pattern can not match data: " "
+    the non-whitespace pattern can not match data: " "
 
 whitespace:
   group: tabulation
   description: a pattern to match a word divider such as space, tab, newline, and more.
   pattern: "\\s"
   positive test:
-    pattern matches white space: " "
+    pattern matches whitespace: " "
   negative test:
-    the white space pattern can not match data: "."
+    the whitespace pattern can not match data: "."
 
 zowhitespace:
   group: tabulation
@@ -141,18 +141,18 @@ zowhitespaces:
   description: a pattern to match zero or multiple word divider such as space, tab, newline, and more.
   pattern: "\\s*"
   positive test:
-    pattern match zero or multiple white spaces: " "
+    pattern match zero or multiple whitespaces: " "
   negative test:
-    zero or multiple white space pattern can not match data: "."
+    zero or multiple whitespace pattern can not match data: "."
 
 whitespaces:
   group: tabulation
   description: a pattern to match multiple word divider such as space, tab, newline, and more.
   pattern: "\\s+"
   positive test:
-    pattern match multiple white spaces: " "
+    pattern match multiple whitespaces: " "
   negative test:
-    the multiple white space pattern can not match data: "."
+    the multiple whitespace pattern can not match data: "."
 
 non_whitespace:
   group: character
@@ -161,7 +161,7 @@ non_whitespace:
   positive test:
     pattern matches non-whitespace: "a"
   negative test:
-    the non-white space pattern can not match data: " "
+    the non-whitespace pattern can not match data: " "
 
 zonon_whitespace:
   group: character
@@ -170,25 +170,43 @@ zonon_whitespace:
   positive test:
     pattern matches zero or non-whitespace: "a"
   negative test:
-    zero or non-white space pattern can not match data: " "
+    zero or non-whitespace pattern can not match data: " "
 
 non_whitespaces:
   group: character
   description: a pattern to match multiple characters which is not a white space character.
   pattern: "\\S+"
   positive test:
-    pattern match multiple non-white space: "ab"
+    pattern match multiple non-whitespace: "ab"
   negative test:
-    the multiple non-white space pattern can not match data: " "
+    the multiple non-whitespace pattern can not match data: " "
 
 zonon_whitespaces:
   group: character
   description: a pattern to match zero or multiple characters which is not a white space character.
   pattern: "\\S*"
   positive test:
-    pattern match multiple non-white space: "ab"
+    pattern match multiple non-whitespace: "ab"
   negative test:
-    zero or multiple non-white space pattern can not match data: " "
+    zero or multiple non-whitespace pattern can not match data: " "
+
+non_whitespaces_or_group:
+  group: character
+  description: a pattern to match non-whitespaces or group of non-whitespaces.
+  pattern: "\\S+( \\S)*"
+  positive test:
+    pattern match non-whitespaces or group of non-whitespaces: "ab"
+  negative test:
+    non-whitespaces or group of non-whitespaces pattern can not match data: " "
+
+non_whitespaces_group:
+  group: character
+  description: a pattern to match group of non-whitespaces.
+  pattern: "\\S+( \\S)+"
+  positive test:
+    pattern match group of non-whitespaces: "ab"
+  negative test:
+    non-whitespaces or group of non-whitespaces pattern can not match data: " "
 
 punctuation:
   group: punctuation
@@ -260,7 +278,7 @@ word:
 words:
   group: word
   description: a pattern to match at least one word.
-  pattern: "[a-zA-Z0-9]+( +[a-zA-Z0-9]+)*"
+  pattern: "[a-zA-Z0-9]+( [a-zA-Z0-9]+)*"
   positive test:
     pattern match words: "abc xyz"
   negative test:
@@ -280,7 +298,7 @@ mixed_words:
   group: word
   description: a pattern to match at least one mixed word.
   # pattern: "\\S*[a-zA-Z0-9]\\S*( \\S*[a-zA-Z0-9]\\S*)*"
-  pattern: '[\x21-\x7e]+( +[\x21-\x7e]+)*'
+  pattern: '[\x21-\x7e]+( [\x21-\x7e]+)*'
   positive test:
     pattern match mixed words: "email: abc@xyz.com"
   negative test:
@@ -289,7 +307,7 @@ mixed_words:
 phrase:
   group: word
   description: a pattern to match a phrase, i.e. at least two words.
-  pattern: "[a-zA-Z0-9]+( +[a-zA-Z0-9]+)+"
+  pattern: "[a-zA-Z0-9]+( [a-zA-Z0-9]+)+"
   positive test:
     pattern match a phrase: "abc xyz"
   negative test:
@@ -298,7 +316,7 @@ phrase:
 mixed_phrase:
   group: word
   description: a pattern to match a mixed phrase.
-  pattern: '[\x21-\x7e]+( +[\x21-\x7e]+)+'
+  pattern: '[\x21-\x7e]+( [\x21-\x7e]+)+'
   positive test:
     pattern match a mixed phrase: "email: abc@xyz.com"
   negative test:
