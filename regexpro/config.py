@@ -88,7 +88,7 @@ class Data:
         Proprietary and confidential.
 
         Written by Tuyen Mathew Duong <tuyen@geekstrident.com>, Jan 14, 2022.
-        """).strip()
+        """).strip()    # noqa
 
     @classmethod
     def get_dependency(cls):

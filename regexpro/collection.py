@@ -4,7 +4,6 @@ import re
 import yaml
 import string
 from textwrap import dedent
-from pathlib import Path, PurePath
 from copy import copy
 
 from regexpro.exceptions import EscapePatternError
@@ -14,6 +13,9 @@ from regexpro.exceptions import ElementPatternError
 from regexpro.exceptions import LinePatternError
 from regexpro.exceptions import MultilinePatternError
 from regexpro.exceptions import PatternBuilderError
+from regexpro.config import Data
+
+from genericlib import File
 
 import logging
 logger = logging.getLogger(__file__)
@@ -133,16 +135,21 @@ class PatternReference(dict):
     """
 
     # regexp pattern - from system references
-    sys_ref_loc = str(PurePath(Path(__file__).parent, 'system_references.yaml'))
+    sys_ref_loc = Data.system_reference_filename
     # regex patterns - from user references
-    user_ref_loc = str(PurePath(Path.home(), '.regexpro', 'user_references.yaml'))
+    user_ref_loc = Data.user_reference_filename
 
     def __init__(self):
         super().__init__()
-        self.load_reference(self.sys_ref_loc)
+        self.load_sys_ref()
         self.load_reference(self.user_ref_loc)
         self.test_result = ''
         self.violated_format = ''
+
+    def load_sys_ref(self):
+        with open(self.sys_ref_loc) as stream:
+            yaml_obj = yaml.safe_load(stream)
+            self.update(yaml_obj)
 
     def load_reference(self, filename):
         """Load reference from YAML references file.
@@ -159,19 +166,19 @@ class PatternReference(dict):
         PatternReferenceError: raise exception if filename doesn't exist or
                 an invalid format
         """
-        node = Path(filename)
-        if not node.exists():
-            if filename == self.sys_ref_loc:
+
+        if not File.is_exist(filename):
+            if filename == self.user_ref_loc:
+                sample_file = Data.sample_user_keywords_filename
+                File.create(filename)
+                File.copy_file(sample_file, filename)
+            else:
                 msg = '{} is NOT FOUND.'.format(filename)
                 raise PatternReferenceError(msg)
-            else:
-                # fmt = '%s is NOT existed.  CANT load reference.'
-                # logger.warning(fmt, filename)
-                return
 
         try:
-            with node.open() as stream:
-                yaml_obj = yaml.load(stream, Loader=yaml.SafeLoader)
+            with open(filename) as stream:
+                yaml_obj = yaml.safe_load(stream)
 
                 if not yaml_obj:
                     return
@@ -299,13 +306,14 @@ class PatternReference(dict):
         -------
         bool: True there is a violation.
         """
-        sys_ref = yaml.load(open(self.sys_ref_loc), Loader=yaml.SafeLoader)
-        fmt = '{} is ALREADY existed in system_references.yaml'
-        for name in dict_obj:
-            if 'datetime' not in name:
-                if name in sys_ref:
-                    self.violated_format = fmt.format(name)
-                    return True
+        with open(self.sys_ref_loc) as stream:
+            sys_ref = yaml.safe_load(stream)
+            fmt = '{} is ALREADY existed in system_references.yaml'
+            for name in dict_obj:
+                if 'datetime' not in name:
+                    if name in sys_ref:
+                        self.violated_format = fmt.format(name)
+                        return True
         return False
 
     def test(self, content):
@@ -325,7 +333,7 @@ class PatternReference(dict):
         """
 
         try:
-            yaml_obj = yaml.load(content, Loader=yaml.SafeLoader)
+            yaml_obj = yaml.safe_load(content)
         except Exception as ex:
             msg = '{} - {}'.format(type(ex).__name__, ex)
             raise PatternReferenceError(msg)
@@ -358,12 +366,12 @@ class SymbolCls(dict):
     filename (str): a system references file name.
     """
 
-    filename = str(PurePath(Path(__file__).parent, 'symbols.yaml'))
+    filename = Data.symbol_reference_filename
 
     def __init__(self):
-        stream = open(self.filename)
-        obj = yaml.load(stream, Loader=yaml.SafeLoader)
-        super().__init__(obj)
+        with open(self.filename) as stream:
+            obj = yaml.safe_load(stream)
+            super().__init__(obj)
 
 
 REF = PatternReference()
