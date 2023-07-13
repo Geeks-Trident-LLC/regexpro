@@ -124,7 +124,6 @@ class PatternReference(dict):
     -------
     load_reference(filename) -> None
     PatternReference.get_pattern_layout(name) -> str
-    is_valid_format(name, value) -> bool
     is_violated(dict_obj) -> bool
     test(self, content) -> bool
 
@@ -237,64 +236,6 @@ class PatternReference(dict):
         layout1, layout2 = dedent(layout1).strip(), dedent(layout2).strip()
         return layout2 if 'datetime' in name else layout1
 
-    def is_valid_format(self, name, value):
-        """Check if name and value are valid
-
-        Parameters
-        ----------
-        name (str): a name of reference
-        value (dict): a value of reference
-
-        Returns
-        -------
-        bool: True if a reference is valid.
-        """
-        fmt1 = 'value of "{}" MUST be a dictionary'
-        fmt2 = 'value of "{}" MUST have "group" key'
-        fmt3 = 'value of "{}" MUST have "description" key'
-        fmt4 = 'value of "positive test" of "{}" MUST be a dictionary'
-        fmt5 = 'value of "negative test" of "{}" MUST be a dictionary'
-        fmt6 = ('value of "{}" (i.e datetime reference) '
-                'MUST have "format" or "format#" key')
-        fmt7 = 'value of "{}" MUST have "pattern" key'
-
-        if not isinstance(value, dict):
-            self.violated_format = fmt1.format(name)
-            return False
-
-        if 'group' not in value:
-            self.violated_format = fmt2.format(name)
-            return False
-
-        if 'description' not in value:
-            self.violated_format = fmt3.format(name)
-            return False
-
-        if 'positive test' in value:
-            pos_test_value = value.get('positive test')
-            if not isinstance(pos_test_value, dict):
-                self.violated_format = fmt4.format(name)
-                return False
-
-        if 'negative test' in value:
-            neg_test_value = value.get('positive test')
-            if not isinstance(neg_test_value, dict):
-                self.violated_format = fmt5.format(name)
-                return False
-
-        if 'datetime' in name:
-            for key in value:
-                if 'format' in key:
-                    return True
-            self.violated_format = fmt6.format(name)
-            return False
-        else:
-            if 'pattern' in value:
-                return True
-            else:
-                self.violated_format = fmt7.format(name)
-                return False
-
     def is_violated(self, dict_obj):
         """Check if new pattern reference doesn't violate with system reference
 
@@ -346,10 +287,6 @@ class PatternReference(dict):
         if not isinstance(yaml_obj, dict):
             msg = 'content must be structure of dictionary.'
             raise PatternReferenceError(msg)
-
-        for name, value in yaml_obj.items():
-            if not self.is_valid_format(name, value):
-                raise PatternReferenceError(self.violated_format)
 
         if self.is_violated(yaml_obj):
             raise PatternReferenceError(self.violated_format)
