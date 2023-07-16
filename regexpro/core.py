@@ -1186,9 +1186,9 @@ class NonCommercialUseCls:
                 print('##### block #%s #####' % i)
                 if match:
                   print('%s\\n%s' % (match, match.group()))
-                  match.groupdict() and print('%s\\n' % match.groupdict())
+                  match.groupdict() and print(match.groupdict())
                 else:
-                  print('??? Generated pattern NOT match data in block #%s ???\\n' % i)      
+                  print('??? Generated pattern NOT match data in block #%s ???' % i)      
 
             test_data = '''...'''   # replace actual data in ellipsis
             test_generated_pattern(test_data)
@@ -1227,9 +1227,9 @@ class NonCommercialUseCls:
             match = re.search(pattern, block)
             lst.append(f"##### block #{i} #####")
             if not match:
-                lst.append(f"??? Generated pattern NOT match data in block #{i} ???\n")
+                lst.append(f"??? Generated pattern NOT match data in block #{i} ???")
                 continue
             lst.append(f"{match}\n{match.group()}")
-            match.groupdict() and lst.append(f"{match.groupdict()}\n")
+            match.groupdict() and lst.append(f"{match.groupdict()}")
         test_result = str.join("\n", lst)
         return test_result
