@@ -52,6 +52,8 @@ class Data:
         )
     )
 
+    app_version = version
+
     # main app
     main_app_text = f'RegexApp v{version}'
 

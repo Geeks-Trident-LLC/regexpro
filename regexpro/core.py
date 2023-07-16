@@ -1140,7 +1140,7 @@ class NonCommercialUseCls:
 
     def get_pattern_snippet(self):
         pattern = "pattern = r%s" % enclose_string(self.factory.patterns[0])
-        snippet = f"{self.comment}\n\n{pattern}"
+        snippet = f"{self.comment}\n{pattern}"
         return snippet
 
     def get_code_snippet(self):
@@ -1161,12 +1161,12 @@ class NonCommercialUseCls:
                 print(match.group())
                 match.groupdict() and print(match.groupdict())
               else:
-                print("??? Generated pattern NOT match any data ???")      
+                print('??? Generated pattern NOT match any data ???')      
 
             test_data = '''...'''   # replace actual data in ellipsis
             test_generated_pattern(test_data)
             ################################""").strip()
-        code_snippet = f"{self.comment}\n\n{script}"
+        code_snippet = f"{self.comment}\n{script}"
         return code_snippet
 
     def get_snippet_v2(self):
@@ -1176,25 +1176,24 @@ class NonCommercialUseCls:
 
             def test_generated_pattern(test_data):
               {pattern}
-              chk_pat = r"<<multi([+._-])test\\1data>>"
-              split_pat = r"(?:\\s *)?<<multi([+._-])test\\1data>>(?: *\\s)?"
-              if re.search(chk_pat, test_data):
-                blocks = [item for item in re.split(split_pat, test_data) if len(item) > 1]
+              split_pat = r'(?i)\\r?\\n? *<<separator>> *\\r?\\n?'
+              if re.search(split_pat, test_data):
+                blocks = re.split(split_pat, test_data)
               else:
                 blocks = test_data.splitlines()
               for i, block in enumerate(blocks, 1):
                 match = re.search(pattern, block)
-                print("##### block #%s #####" % i)
+                print('##### block #%s #####' % i)
                 if match:
-                  print("%s\\n%s" % (match, match.group()))
-                  match.groupdict() and print("%s\\n" % match.groupdict())
+                  print('%s\\n%s' % (match, match.group()))
+                  match.groupdict() and print('%s\\n' % match.groupdict())
                 else:
-                  print("??? Generated pattern NOT match data in block #%s ???\\n" % i)      
+                  print('??? Generated pattern NOT match data in block #%s ???\\n' % i)      
 
             test_data = '''...'''   # replace actual data in ellipsis
             test_generated_pattern(test_data)
             ################################""").strip()
-        code_snippet = f"{self.comment}\n\n{script}"
+        code_snippet = f"{self.comment}\n{script}"
         return code_snippet
 
     def get_test_result(self, test_data):
@@ -1218,10 +1217,9 @@ class NonCommercialUseCls:
 
     def get_tresult_v2(self, test_data):
         pattern = self.factory.patterns[0]
-        chk_pat = r"<<multi([+._-])test\1data>>"
-        split_pat = r"(?:\s *)?<<multi([+._-])test\1data>>(?: *\s)?"
-        if re.search(chk_pat, test_data):
-            blocks = [item for item in re.split(split_pat, test_data) if len(item) > 2]
+        split_pat = r'(?i)\r?\n? *<<separator>> *\r?\n?'
+        if re.search(split_pat, test_data):
+            blocks = re.split(split_pat, test_data)
         else:
             blocks = test_data.splitlines()
         lst = list()
