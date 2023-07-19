@@ -16,13 +16,13 @@ class TestTextPattern:
         [
             ('first last', 'first last'),
             ('first\tlast', 'first\\slast'),
-            ('first\nlast', 'first\\slast'),
-            ('first\r\nlast', 'first\\s+last'),
+            ('first\nlast', 'first[\\r\\n]{1,2}last'),
+            ('first\r\nlast', 'first[\\r\\n]{1,2}last'),
             ('first   last   fullname', 'first +last +fullname'),
             (' first   last   fullname', ' first +last +fullname'),
             ('  first   last   fullname', ' +first +last +fullname'),
-            ('\nfirst   last   fullname', '\\sfirst +last +fullname'),
-            ('\n first   last   fullname', '\\s+first +last +fullname')
+            ('\nfirst   last   fullname', '[\\r\\n]{1,2}first +last +fullname'),
+            ('\n first   last   fullname', '[\\r\\n]{1,2} first +last +fullname')
         ]
     )
     def test_text_pattern(self, data, expected_result):

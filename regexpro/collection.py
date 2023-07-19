@@ -16,6 +16,8 @@ from regexpro.exceptions import PatternBuilderError
 from regexpro.config import Data
 
 from genericlib import File
+from genericlib.text import WHITESPACE_CHARS
+from genericlib.text import Line
 
 import logging
 logger = logging.getLogger(__file__)
@@ -380,18 +382,65 @@ class TextPattern(str):
             return bool(result)
 
     @property
-    def is_empty_or_whitespace(self):
+    def is_space(self):
+        is_space = bool(re.match(self, ' '))
+        return is_space
+
+    @property
+    def is_empty_or_space(self):
         is_empty = self.is_empty
-        is_ws = bool(re.match(str(self), ' '))
-        return is_empty or is_ws
+        is_space = self.is_space
+        return is_empty or is_space
 
     @property
     def is_whitespace(self):
-        is_ws = bool(re.match(str(self), ' '))
+        is_ws = all(True for c in WHITESPACE_CHARS if re.match(self, c))
         return is_ws
+
+    @property
+    def is_empty_or_whitespace(self):
+        is_empty = self.is_empty
+        is_ws = self.is_whitespace
+        return is_empty or is_ws
 
     @classmethod
     def get_pattern(cls, text):
+        """convert data to regex pattern
+
+        Parameters
+        ----------
+        text (str): a text
+
+        Returns
+        -------
+        str: a regex pattern.
+
+        Raises
+        ------
+        TextPatternError: raise an exception if pattern is invalid.
+        """
+        text_pattern = ''
+        start = 0
+        m = None
+        for m in re.finditer(r'[\r\n]+', text):
+            pre_match = text[start:m.start()]
+            if pre_match:
+                text_pattern += Line(pre_match).convert_to_regex_pattern()
+            match = m.group()
+            multi = '{1,2}' if len(match) == len(set(match)) else '{2,}'
+            text_pattern += f'[\\r\\n]{multi}'
+        if m:
+            post_match = text[m.end():]
+            if post_match:
+                text_pattern += Line(post_match).convert_to_regex_pattern()
+        else:
+            text_pattern = Line(text).convert_to_regex_pattern()
+
+        validate_pattern(text_pattern, exception_cls=TextPatternError)
+        return text_pattern
+
+    @classmethod
+    def get_pattern_bak(cls, text):
         """convert data to regex pattern
 
         Parameters

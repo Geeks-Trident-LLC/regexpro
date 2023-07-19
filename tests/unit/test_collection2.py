@@ -71,7 +71,7 @@ class TestLinePattern:
             (
                 '   Lease Expires . . . . . . . . . . : Sunday, April 11, 2021 8:43:33 AM',  # test data
                 '   Lease Expires . . . . . . . . . . : datetime(var_datetime, format3)',    # user prepared data
-                '(?i) +Lease Expires \\. \\. \\. \\. \\. \\. \\. \\. \\. \\. : (?P<datetime>[a-zA-Z]{6,9}, [a-zA-Z]{3,9} +\\d{1,2}, \\d{4} 1?\\d:\\d{2}:\\d{2} [apAP][mM])',  # noqa
+                '(?i) +Lease Expires (\\. ){2,}: (?P<datetime>[a-zA-Z]{6,9}, [a-zA-Z]{3,9} +\\d{1,2}, \\d{4} 1?\\d:\\d{2}:\\d{2} [apAP][mM])',  # noqa
                 False, False, True,
                 True
             ),
@@ -85,7 +85,7 @@ class TestLinePattern:
             (
                 '   Lease Expires . . . . . . . . . . : Sunday, April 11, 2021 8:43:33 AM',         # test data
                 '   Lease Expires . . . . . . . . . . : datetime(var_datetime, format3, format4)',  # user prepared data
-                '(?i) +Lease Expires \\. \\. \\. \\. \\. \\. \\. \\. \\. \\. : (?P<datetime>([a-zA-Z]{6,9}, [a-zA-Z]{3,9} +\\d{1,2}, \\d{4} 1?\\d:\\d{2}:\\d{2} [apAP][mM])|(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}))',     # noqa
+                '(?i) +Lease Expires (\\. ){2,}: (?P<datetime>([a-zA-Z]{6,9}, [a-zA-Z]{3,9} +\\d{1,2}, \\d{4} 1?\\d:\\d{2}:\\d{2} [apAP][mM])|(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}))',     # noqa
                 False, False, True,
                 True
             ),
