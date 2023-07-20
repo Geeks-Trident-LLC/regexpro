@@ -187,7 +187,7 @@ class RegexBuilder:
     """
     def __init__(self, user_data='', test_data='',
                  prepended_ws=False, appended_ws=False, ignore_case=False,
-                 test_name='', is_line=False,
+                 test_name='', is_line=False, is_exact=False,
                  max_words=6, test_cls_name='TestDynamicGenTestScript',
                  author='', email='', company='', filename='',
                  **kwargs
@@ -201,6 +201,7 @@ class RegexBuilder:
 
         self.test_name = test_name
         self.is_line = is_line
+        self.is_exact = is_exact
         self.max_words = max_words
         self.test_cls_name = test_cls_name
         self.author = author
@@ -284,7 +285,11 @@ class RegexBuilder:
                     ignore_case=self.ignore_case
                 )
             else:
-                pattern = MultilinePattern(user_data, ignore_case=self.ignore_case)
+                pattern = MultilinePattern(
+                    user_data,
+                    ignore_case=self.ignore_case,
+                    is_exact=self.is_exact
+                )
 
             pattern not in self.patterns and self.patterns.append(pattern)
             self.user_data_pattern_table[user_data] = pattern

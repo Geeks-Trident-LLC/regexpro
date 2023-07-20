@@ -2065,26 +2065,28 @@ class MultilinePattern(str):
             Default is False.
 
     """
-    def __new__(cls, text, ignore_case=False):
+    def __new__(cls, text, ignore_case=False, is_exact=False):
 
         lines = []
         if isinstance(text, (list, tuple)):
             for line in text:
-                lines.extend(str(line).splitlines())
+                lines.extend(re.split(r'\r\n|\r|\n', line))
         elif isinstance(text, str):
-            lines = text.splitlines()
+            lines = re.split(r'\r\n|\r|\n', text)
         else:
             'text argument must be string or list of string'
             raise MultilinePatternError(text)
 
         if lines:
-            pattern = cls.get_pattern(lines, ignore_case=ignore_case)
+            pattern = cls.get_pattern(
+                lines, ignore_case=ignore_case, is_exact=is_exact
+            )
         else:
             pattern = r'^\s*$'
         return str.__new__(cls, pattern)
 
     @classmethod
-    def get_pattern(cls, lines, ignore_case=False):
+    def get_pattern(cls, lines, ignore_case=False, is_exact=False):
         """convert text to regex pattern
 
         Parameters
@@ -2113,20 +2115,17 @@ class MultilinePattern(str):
         if len(line_patterns) == 1:
             return first
 
-        new_line_patterns = [cls.reformat(first, is_first=True)]
-        other_line_pat = r'([^\r\n]*[\r\n]+)*'
+        new_line_patterns = [cls.reformat(first, is_first=True,is_exact=is_exact)]
         for line_pat in line_patterns[1:-1]:
-            new_line_patterns.append(other_line_pat)
-            new_line_patterns.append(cls.reformat(line_pat))
+            new_line_patterns.append(cls.reformat(line_pat, is_exact=is_exact))
 
-        new_line_patterns.append(other_line_pat)
-        new_line_patterns.append(cls.reformat(last, is_last=True))
+        new_line_patterns.append(cls.reformat(last, is_last=True, is_exact=is_exact))
 
         new_pattern = ''.join(new_line_patterns)
         return new_pattern
 
     @classmethod
-    def reformat(cls, pattern, is_first=False, is_last=False):
+    def reformat(cls, pattern, is_first=False, is_last=False, is_exact=False):
         """reformat pattern to work with re.MULTILINE matching
 
         Parameters
@@ -2139,21 +2138,19 @@ class MultilinePattern(str):
         -------
         str: a new pattern after reformat.
         """
+        pat1 = r'(\r\n|\r|\n)'
+        pat2 = r'[^\r\n]*[\r\n]+([^\r\n]*[\r\n]+)*'
+        add_on_pat = pat1 if is_exact else pat2
         if is_first:
-            if pattern.startswith('(?i)'):
-                new_pattern = pattern.replace('(?i)', '(?im)')
-            else:
-                new_pattern = '(?m){}'.format(pattern)
+            return pattern
         else:
-            new_pattern = pattern.replace('(?i)', '')
-
-        if not is_last:
-            if new_pattern.endswith('$'):
-                new_pattern = r'{}[\r\n]+'.format(new_pattern)
+            pattern = pattern.replace('(?i)', '')
+            if is_last:
+                return f'{add_on_pat}{pattern}'
             else:
-                new_pattern = r'{}[^\r\n]*[\r\n]+'.format(new_pattern)
-
-        return new_pattern
+                if pattern.endswith('$'):
+                    pattern = pattern[:-1]
+                return f'{add_on_pat}{pattern}'
 
 
 class PatternBuilder(str):
