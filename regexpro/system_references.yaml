@@ -350,13 +350,13 @@ word_flex_group:
 
 mixed_word:
   description: a pattern to match a mixed word that might include a punctuation.
-  pattern: "[\\x21-\\x7e]+"
+  pattern: "[\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*"
   positive_test: "abc@xyz.com"
   negative_test: "+-*/"
 
 mixed_word_or_group: &mixed_word_or_group
   description: a pattern to match at least one mixed-word.
-  pattern: "[\\x21-\\x7e]+( [\\x21-\\x7e]+)*"
+  pattern: "[\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*( [\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*)*"
   positive_test: "email: abc@xyz.com"
   negative_test: "+-*/ -&^"
 
@@ -364,7 +364,7 @@ mixed_words: *mixed_word_or_group
 
 mixed_word_or_flex_group: &mixed_word_or_flex_group
   description: a pattern to match at least one mixed-word.
-  pattern: "[\\x21-\\x7e]+( +[\\x21-\\x7e]+)*"
+  pattern: "[\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*( +[\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*)*"
   positive_test: "email: abc@xyz.com"
   negative_test: "+-*/ -&^"
 
@@ -372,13 +372,13 @@ mixed_flex_words: *mixed_word_or_flex_group
 
 mixed_word_group:
   description: a pattern to match at least two mixed-word.
-  pattern: "[\\x21-\\x7e]+( [\\x21-\\x7e]+)+"
+  pattern: "[\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*( [\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*)+"
   positive_test: "email: abc@xyz.com"
   negative_test: "+-*/ -&^"
 
 mixed_word_flex_group:
   description: a pattern to match at least two mixed-word.
-  pattern: "[\\x21-\\x7e]+( +[\\x21-\\x7e]+)+"
+  pattern: "[\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*( +[\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*"
   positive_test: "email: abc@xyz.com"
   negative_test: "+-*/ -&^"
 
@@ -408,13 +408,13 @@ another_flex_phrase:
 
 mixed_phrase:
   description: a pattern to match at least two mixed words.
-  pattern: "[\\x21-\\x7e]+( [\\x21-\\x7e]+)+"
+  pattern: "[\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*( [\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*)+"
   positive_test: "email: abc@xyz.com"
   negative_test: "email:"
 
 flex_mixed_phrase:
   description: a pattern to match at least two mixed words.
-  pattern: "[\\x21-\\x7e]+( +[\\x21-\\x7e]+)+"
+  pattern: "[\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*( +[\\x21-\\x7e]*[a-zA-Z][\\x21-\\x7e]*)+"
   positive_test: ["email: abc@xyz.com", "email:   abc@xyz.com"]
   negative_test: "email:"
 
