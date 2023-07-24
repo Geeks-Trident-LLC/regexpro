@@ -260,49 +260,65 @@ letter:
   positive_test: "a"
   negative_test: "."
 
-letters:
+letters: &letters
   description: a pattern to match letters.
   pattern: "[a-zA-Z]+"
   positive_test: "abc"
   negative_test: "..."
 
-letters_or_group:
+dictionary_word: *letters
+
+dword: *letters
+
+letters_or_group: &letters_or_group
   description: a pattern to match zero or group of letters.
   pattern: "[a-zA-Z]+( [a-zA-Z]+)*"
   positive_test: "abc"
   negative_test: "..."
 
-letters_or_flex_group:
+dictionary_word_or_group: *letters_or_group
+
+dword_or_group: *letters_or_group
+
+dictionary_words: *letters_or_group
+
+dwords: *letters_or_group
+
+letters_or_flex_group: &letters_or_flex_group
   description: a pattern to match zero or group of letters.
   pattern: "[a-zA-Z]+( +[a-zA-Z]+)*"
   positive_test: "abc"
   negative_test: "..."
 
-letters_group:
+dictionary_word_or_flex_group: *letters_or_flex_group
+
+dword_or_flex_group: *letters_or_flex_group
+
+letters_group: &letters_group
   description: a pattern to match a group of letters.
   pattern: "[a-zA-Z]+( [a-zA-Z]+)+"
   positive_test: "abc"
   negative_test: "..."
 
-letters_flex_group:
+dictionary_word_group: *letters_group
+
+dword_group: *letters_group
+
+letters_flex_group: &letters_flex_group
   description: a pattern to match a group of letters.
   pattern: "[a-zA-Z]+( +[a-zA-Z]+)+"
   positive_test: "abc"
   negative_test: "..."
+
+dictionary_word_flex_group: *letters_flex_group
+
+dword_flex_group: *letters_flex_group
 
 word:
   description: a pattern to match a word.
   pattern: "[a-zA-Z][a-zA-Z0-9]*"
   positive_test: "abc"
   negative_test: "[...]"
-
-another_word: &another_word
-  description: a pattern to match a word.
-  pattern: "\\w*[a-zA-Z]\\w*"
-  positive_test: "abc"
-  negative_test: "[...]"
-
-aword: *another_word
 
 word_or_group: &word_or_group
   description: a pattern to match at least one word.
@@ -320,6 +336,26 @@ word_or_flex_group: &word_or_flex_group
 
 flex_words: *word_or_flex_group
 
+word_group:
+  description: a pattern to match at least two words.
+  pattern: "[a-zA-Z][a-zA-Z0-9]*( [a-zA-Z][a-zA-Z0-9]*)+"
+  positive_test: "abc"
+  negative_test: "[...]"
+
+word_flex_group:
+  description: a pattern to match at least two words.
+  pattern: "[a-zA-Z][a-zA-Z0-9]*( +[a-zA-Z][a-zA-Z0-9]*)+"
+  positive_test: "abc"
+  negative_test: "[...]"
+
+another_word: &another_word
+  description: a pattern to match a word.
+  pattern: "\\w*[a-zA-Z]\\w*"
+  positive_test: "abc"
+  negative_test: "[...]"
+
+aword: *another_word
+
 another_words: &another_words
   description: a pattern to match at least one word.
   pattern: "\\w*[a-zA-Z]\\w*( \\w*[a-zA-Z]\\w*)*"
@@ -335,18 +371,6 @@ another_word_or_flex_group: &another_word_or_flex_group
   negative_test: "... +++"
 
 another_flex_words: *another_word_or_flex_group
-
-word_group:
-  description: a pattern to match at least two words.
-  pattern: "[a-zA-Z][a-zA-Z0-9]*( [a-zA-Z][a-zA-Z0-9]*)+"
-  positive_test: "abc"
-  negative_test: "[...]"
-
-word_flex_group:
-  description: a pattern to match at least two words.
-  pattern: "[a-zA-Z][a-zA-Z0-9]*( +[a-zA-Z][a-zA-Z0-9]*)+"
-  positive_test: "abc"
-  negative_test: "[...]"
 
 mixed_word:
   description: a pattern to match a mixed word that might include a punctuation.
