@@ -492,11 +492,11 @@ signed_number:
 
 mixed_number:
   description: a pattern to match a mixed number.
-  pattern: "[+\\(\\[\\$-]?(\\d+(,\\d+)*)?[.]?\\d+[\\]\\)%a-zA-Z]*"
+  pattern: "[+\\(\\[\\$-]?(\\d+([,:/-]\\d+)*)?[.]?\\d+[\\]\\)%a-zA-Z]*"
   positive_test: [
         "69", "-69.95", "+0.95", "(.95)",
         "9.95%", "$19.99", "11,350.12",
-        "$11,350.12", "1.9Mb"
+        "$11,350.12", "1.9Mb", "10:20:30", "2022-10-13", "10/13/2022"
     ]
   negative_test: ["a.b"]
 
