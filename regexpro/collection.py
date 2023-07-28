@@ -1707,6 +1707,7 @@ class ElementPattern(str):
         new_lst = lst[:]
         m = re.match(cls.occurrence_pattern, occurrence)
         is_phrase = bool(m.group('is_phrase'))
+        spacer = ' +' if is_phrase and m.group('is_phrase') == '_group' else ' '
 
         fda, lda = m.group('fda') or '', m.group('lda') or ''
         fdb, ldb = m.group('fdb') or '', m.group('ldb') or ''
@@ -1715,15 +1716,15 @@ class ElementPattern(str):
 
         func = ElementPattern.add_case_occurrence
 
-        is_case_a = func(new_lst, fda, lda, is_phrase)
-        is_case_b = is_case_a or func(new_lst, fdb, ldb, is_phrase)
-        is_case_c = is_case_b or func(new_lst, fdc, ldc, is_phrase)
-        is_case_c or func(new_lst, fdd, ldd, is_phrase)
+        is_case_a = func(new_lst, fda, lda, is_phrase, spacer=spacer)
+        is_case_b = is_case_a or func(new_lst, fdb, ldb, is_phrase, spacer=spacer)
+        is_case_c = is_case_b or func(new_lst, fdc, ldc, is_phrase, spacer=spacer)
+        is_case_c or func(new_lst, fdd, ldd, is_phrase, spacer=spacer)
 
         return new_lst
 
     @classmethod
-    def add_case_occurrence(cls, lst, first, last, is_phrase):
+    def add_case_occurrence(cls, lst, first, last, is_phrase, spacer=' '):
         """check if pattern is a singular pattern
 
         Parameters
@@ -1742,7 +1743,8 @@ class ElementPattern(str):
 
         item = lst[0]
         if is_phrase:
-            item = '{0}( {0})'.format(item)
+            # item = '{0}( {0})'.format(item)
+            item = f'{item}({spacer}{item})'
         else:
             is_singular = ElementPattern.is_singular_pattern(item)
             item = item if is_singular else '({})'.format(item)
