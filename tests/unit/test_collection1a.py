@@ -112,4 +112,3 @@ class TestElementPatternA:
         except Exception as ex:
             error = 'invalid pattern: %r (err-msg: %s)' % (pattern, ex)
             assert False, error
-

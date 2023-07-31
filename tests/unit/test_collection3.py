@@ -7,7 +7,6 @@ from regexpro import PatternBuilder
 from regexpro import MultilinePattern
 
 
-
 class TestPatternBuilder:
     @pytest.mark.parametrize(
         ('test_data', 'expected_pattern', 'var_name', 'word_bound'),

@@ -19,4 +19,3 @@ class TestLinePattern:
     def test_generated_pattern(self, user_data, expected_pattern):
         pattern = LinePattern(user_data)
         assert pattern == expected_pattern
-

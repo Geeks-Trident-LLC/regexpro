@@ -129,4 +129,3 @@ class TestTextPattern:
         else:
             result = text_pat.concatenate(other, as_is=as_is)
         assert result == expected_result
-
