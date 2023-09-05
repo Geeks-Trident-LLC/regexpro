@@ -2239,7 +2239,7 @@ class MultilinePattern(str):
         if len(line_patterns) == 1:
             return first
 
-        new_line_patterns = [cls.reformat(first, is_first=True,is_exact=is_exact)]
+        new_line_patterns = [cls.reformat(first, is_first=True, is_exact=is_exact)]
         for line_pat in line_patterns[1:-1]:
             new_line_patterns.append(cls.reformat(line_pat, is_exact=is_exact))
 
@@ -2267,7 +2267,7 @@ class MultilinePattern(str):
         pat2 = r'[^\r\n]*[\r\n]+([^\r\n]*[\r\n]+)*'
         add_on_pat = pat1 if is_exact else pat2
         if is_first:
-            return pattern
+            return pattern[:-1] if pattern.endswith('$') else pattern
         else:
             pattern = pattern.replace('(?i)', '')
             pattern = pattern[1:] if pattern.startswith('^') else pattern
