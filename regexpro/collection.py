@@ -1425,13 +1425,24 @@ class ElementPattern(str):
         else:
             new_lst = lst
 
-        result = '|'.join(new_lst)
+        has_empty = bool([True for item in new_lst if item == ''])
+        if has_empty:
+            other_lst = [item for item in new_lst if item]
+            result = '|'.join(other_lst)
+            result = f"({result}|)" if len(other_lst) == 1 and not has_ws else f"(({result})|)"
+            return result
+        else:
+            result = '|'.join(new_lst)
+            result = f"({result})" if len(new_lst) > 1 and has_ws else result
+            return result
 
-        has_empty = bool([True for i in new_lst if i == ''])
-        if has_empty or len(new_lst) > 1 and has_ws:
-            result = '({})'.format(result)
-
-        return result
+        # result = '|'.join(new_lst)
+        #
+        # has_empty = bool([True for i in new_lst if i == ''])
+        # if has_empty or len(new_lst) > 1 and has_ws:
+        #     result = '({})'.format(result)
+        #
+        # return result
 
     @classmethod
     def add_var_name(cls, pattern, name=''):

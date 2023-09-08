@@ -12,8 +12,8 @@ class TestElementPatternC:
             ####################################################################
             ('choice(up, down, administratively down)', '(up|down|(administratively down))'),
             ('choice(up, down, administratively down, var_v2)', '(?P<v2>up|down|(administratively down))'),
-            ('choice(up, down, administratively down, var_v2, or_empty)', '(?P<v2>up|down|(administratively down)|)'),
-            ('choice(up, down, administratively down, var_v2, or_empty, or_digits)', '(?P<v2>up|down|(administratively down)|(\\d+)|)'),      # noqa
+            ('choice(up, down, administratively down, var_v2, or_empty)', '(?P<v2>(up|down|(administratively down))|)'),
+            ('choice(up, down, administratively down, var_v2, or_empty, or_digits)', '(?P<v2>(up|down|(administratively down)|(\\d+))|)'),      # noqa
             ('choice(abc, word_bound)', '\\b(abc)\\b'),
             ('choice(abc, xyz, word_bound)', '\\b(abc|xyz)\\b'),
             ('choice(var_v1, abc, xyz, word_bound)', '(?P<v1>\\b(abc|xyz)\\b)'),

@@ -11,8 +11,8 @@ class TestElementPatternA:
             # predefined keyword test combining with other flags               #
             ####################################################################
             ('word(var_v1, or_empty)', '(?P<v1>([a-zA-Z][a-zA-Z0-9]*)|)'),
-            ('word(var_v1, or_n/a, or_empty)', '(?P<v1>([a-zA-Z][a-zA-Z0-9]*)|n/a|)'),
-            ('word(var_v1, or_abc xyz, or_12.95 19.95, or_empty)', '(?P<v1>([a-zA-Z][a-zA-Z0-9]*)|(abc xyz)|(12.95 19.95)|)'),
+            ('word(var_v1, or_n/a, or_empty)', '(?P<v1>(([a-zA-Z][a-zA-Z0-9]*)|n/a)|)'),
+            ('word(var_v1, or_abc xyz, or_12.95 19.95, or_empty)', '(?P<v1>(([a-zA-Z][a-zA-Z0-9]*)|(abc xyz)|(12.95 19.95))|)'),
             ('word(var_v1, word_bound_left)', '(?P<v1>\\b[a-zA-Z][a-zA-Z0-9]*)'),
             ('word(var_v1, word_bound_right)', '(?P<v1>[a-zA-Z][a-zA-Z0-9]*\\b)'),
             ('word(var_v1, word_bound)', '(?P<v1>\\b[a-zA-Z][a-zA-Z0-9]*\\b)'),
