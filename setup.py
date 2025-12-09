@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 setup(
     name='regexpro',
     version='0.4.10',
-    license='Geeks Trident License',
+    license='BSD-3-Clause',
     license_files=['LICENSE'],
     description='The application to generate regex pattern.',
     long_description=open('README.md').read(),
