@@ -26,4 +26,8 @@ Regexbuilder plays a key role in supporting the **TextFSMGenerator**, which buil
 
 ---
 
+**📝 TODO: ⚠️ Regex Pro Edition and Enterprise Edition will be deprecated ❌ and removed during the upcoming migration to 🚀 `regexbuilder` version 1.x.**  
+
+---
+
 ## Disclaimer: This library is under development.

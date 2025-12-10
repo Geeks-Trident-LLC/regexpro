@@ -13,7 +13,7 @@ from genericlib import File
 
 __version__ = '0.4.10'
 version = __version__
-__edition__ = 'Pro'
+__edition__ = 'Community'
 edition = __edition__
 
 __all__ = [
