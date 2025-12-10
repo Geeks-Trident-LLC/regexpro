@@ -1272,6 +1272,9 @@ class Application:
         #         info="Robotframework button is available in Pro or Enterprise Edition."
         #     )
 
+        # TODO: Regex Pro Edition and Enterprise Edition will be deprecated
+        #  and removed in the upcoming migration to regexbuilder version 1.x.
+
         # radio buttons
         self.line_radio_btn = self.RadioButton(
             self.entry_frame, text='line',
