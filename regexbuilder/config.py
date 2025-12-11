@@ -11,7 +11,7 @@ import yaml
 from genericlib import version as gtlib_version
 from genericlib import File
 
-__version__ = '0.5.0'
+__version__ = '0.5.0a0'
 version = __version__
 __edition__ = 'Community'
 edition = __edition__
