@@ -1,5 +1,5 @@
 import pytest       # noqa
-from regexgenerator import LinePattern
+from regexapp import LinePattern
 
 
 class TestLinePattern:

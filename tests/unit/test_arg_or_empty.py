@@ -1,6 +1,6 @@
 import pytest       # noqa
-from regexgenerator import ElementPattern
-from regexgenerator import LinePattern
+from regexapp import ElementPattern
+from regexapp import LinePattern
 
 
 class TestArgumentOrEmpty:

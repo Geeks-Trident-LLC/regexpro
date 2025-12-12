@@ -1,5 +1,5 @@
 import pytest       # noqa
-from regexgenerator import ElementPattern
+from regexapp import ElementPattern
 import string
 import re
 

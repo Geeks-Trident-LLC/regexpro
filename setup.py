@@ -1,4 +1,4 @@
-"""Packaging regexgenerator for distribution, installation, integration, and seamless deployment."""
+"""Packaging regexapp for distribution, installation, integration, and seamless deployment."""
 
 from setuptools import setup, find_packages
 
@@ -6,7 +6,7 @@ with open("README.md", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="regexgenerator",
+    name="regexapp",
     version="0.5.0a0",  # pre-beta versioning to signal alpha/beta status
     license="BSD-3-Clause",
     license_files=["LICENSE"],
@@ -20,7 +20,7 @@ setup(
     maintainer="Tuyen Mathew Duong",
     maintainer_email="tuyen@geekstrident.com",
     install_requires=["pyyaml", "genericlib"],
-    url="https://github.com/Geeks-Trident-LLC/regexgenerator",
+    url="https://github.com/Geeks-Trident-LLC/regexapp",
     packages=find_packages(
         exclude=(
             "tests*", "testing*", "examples*",
@@ -28,19 +28,17 @@ setup(
         )
     ),
     project_urls={
-        "Documentation": "https://github.com/Geeks-Trident-LLC/regexgenerator/wiki",
-        "Source": "https://github.com/Geeks-Trident-LLC/regexgenerator",
-        "Tracker": "https://github.com/Geeks-Trident-LLC/regexgenerator/issues",
+        "Documentation": "https://github.com/Geeks-Trident-LLC/regexapp/wiki",
+        "Source": "https://github.com/Geeks-Trident-LLC/regexapp",
+        "Tracker": "https://github.com/Geeks-Trident-LLC/regexapp/issues",
     },
     python_requires=">=3.9",
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "regexgenerator = regexgenerator.main:execute",
-            "regexgenerator-gui = regexgenerator.application:execute",
-            "regexgenerator-app = regexgenerator.application:execute",
-            "regex-generator-gui = regexgenerator.application:execute",
-            "regex-generator-app = regexgenerator.application:execute",
+            "regexapp = regexapp.main:execute",
+            "regexapp-gui = regexapp.application:execute",
+            "regex-app = regexapp.application:execute",
         ]
     },
     classifiers=[

@@ -23,15 +23,15 @@ from tkinter.font import Font
 from pathlib import Path
 import webbrowser
 from textwrap import dedent
-from regexgenerator import RegexBuilder
-from regexgenerator.collection import REF
-from regexgenerator.collection import PatternReference
-from regexgenerator import version
-from regexgenerator import edition
-from regexgenerator.core import enclose_string
-from regexgenerator import PatternBuilder
+from regexapp import RegexBuilder
+from regexapp.collection import REF
+from regexapp.collection import PatternReference
+from regexapp import version
+from regexapp import edition
+from regexapp.core import enclose_string
+from regexapp import PatternBuilder
 
-from regexgenerator.config import Data
+from regexapp.config import Data
 
 import yaml
 import re
@@ -1273,7 +1273,7 @@ class Application:
         #     )
 
         # TODO: Regex Pro Edition and Enterprise Edition will be deprecated
-        #  and removed in the upcoming migration to regexgenerator version 1.x.
+        #  and removed in the upcoming migration to regexapp version 1.x.
 
         # radio buttons
         self.line_radio_btn = self.RadioButton(

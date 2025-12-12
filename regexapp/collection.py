@@ -6,14 +6,14 @@ import string
 from textwrap import dedent
 from copy import copy
 
-from regexgenerator.exceptions import EscapePatternError
-from regexgenerator.exceptions import PatternReferenceError
-from regexgenerator.exceptions import TextPatternError
-from regexgenerator.exceptions import ElementPatternError
-from regexgenerator.exceptions import LinePatternError
-from regexgenerator.exceptions import MultilinePatternError
-from regexgenerator.exceptions import PatternBuilderError
-from regexgenerator.config import Data
+from regexapp.exceptions import EscapePatternError
+from regexapp.exceptions import PatternReferenceError
+from regexapp.exceptions import TextPatternError
+from regexapp.exceptions import ElementPatternError
+from regexapp.exceptions import LinePatternError
+from regexapp.exceptions import MultilinePatternError
+from regexapp.exceptions import PatternBuilderError
+from regexapp.config import Data
 
 from genericlib import File
 from genericlib.text import WHITESPACE_CHARS

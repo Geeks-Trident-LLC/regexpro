@@ -1,11 +1,11 @@
-from regexgenerator import version as expected_version
+from regexapp import version as expected_version
 from subprocess import check_output
 from subprocess import STDOUT
 import re
 from pathlib import PurePath
 
-from regexgenerator import LinePattern
-from regexgenerator.config import Data
+from regexapp import LinePattern
+from regexapp.config import Data
 
 import pytest       # noqa
 
