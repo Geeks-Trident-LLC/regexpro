@@ -1,4 +1,4 @@
-"""Module containing the logic for the regexbuilder entry-points."""
+"""Module containing the logic for the regexgenerator entry-points."""
 
 import sys
 import argparse
@@ -6,18 +6,16 @@ import re
 import yaml
 # from os import path
 # from textwrap import dedent
-from regexbuilder.application import Application
-from regexbuilder import RegexBuilder
-from regexbuilder.core import enclose_string
+from regexgenerator.application import Application
+from regexgenerator import RegexBuilder
+from regexgenerator.core import enclose_string
 
-# from regexbuilder.utils import Printer
-# from regexbuilder.constant import ECODE
 from genericlib import Printer
 from genericlib import ECODE
 
 
 def run_gui_application(options):
-    """Run regexbuilder GUI application.
+    """Run regexgenerator GUI application.
 
     Parameters
     ----------
@@ -25,7 +23,7 @@ def run_gui_application(options):
 
     Returns
     -------
-    None: will invoke ``regexbuilder.Application().run()`` and ``sys.exit(ECODE.SUCCESS)``
+    None: will invoke ``regexgenerator.Application().run()`` and ``sys.exit(ECODE.SUCCESS)``
     if end user requests `--gui`
     """
     if options.gui:
@@ -37,7 +35,7 @@ def run_gui_application(options):
 def show_dependency(options):
     if options.dependency:
         from platform import uname, python_version
-        from regexbuilder.config import Data
+        from regexgenerator.config import Data
         lst = [
             Data.main_app_text,
             'Platform: {0.system} {0.release} - Python {1}'.format(
@@ -56,19 +54,19 @@ def show_dependency(options):
 
 
 class Cli:
-    """regexbuilder console CLI application."""
+    """regexgenerator console CLI application."""
 
     def __init__(self):
 
         parser = argparse.ArgumentParser(
-            prog='regexbuilder',
+            prog='regexgenerator',
             usage='%(prog)s [options]',
             description='%(prog)s application',
         )
 
         parser.add_argument(
             '--gui', action='store_true',
-            help='Launch a regexbuilder GUI application.'
+            help='Launch a regexgenerator GUI application.'
         )
 
         parser.add_argument(
@@ -249,6 +247,6 @@ class Cli:
 
 
 def execute():
-    """Execute regexbuilder console CLI."""
+    """Execute regexgenerator console CLI."""
     app = Cli()
     app.run()

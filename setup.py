@@ -1,4 +1,4 @@
-"""Packaging regexbuilder for distribution, installation, integration, and seamless deployment."""
+"""Packaging regexgenerator for distribution, installation, integration, and seamless deployment."""
 
 from setuptools import setup, find_packages
 
@@ -6,7 +6,7 @@ with open("README.md", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="regexbuilder",
+    name="regexgenerator",
     version="0.5.0a0",  # pre-beta versioning to signal alpha/beta status
     license="BSD-3-Clause",
     license_files=["LICENSE"],
@@ -20,7 +20,7 @@ setup(
     maintainer="Tuyen Mathew Duong",
     maintainer_email="tuyen@geekstrident.com",
     install_requires=["pyyaml", "genericlib"],
-    url="https://github.com/Geeks-Trident-LLC/regexbuilder",
+    url="https://github.com/Geeks-Trident-LLC/regexgenerator",
     packages=find_packages(
         exclude=(
             "tests*", "testing*", "examples*",
@@ -28,19 +28,19 @@ setup(
         )
     ),
     project_urls={
-        "Documentation": "https://github.com/Geeks-Trident-LLC/regexbuilder/wiki",
-        "Source": "https://github.com/Geeks-Trident-LLC/regexbuilder",
-        "Tracker": "https://github.com/Geeks-Trident-LLC/regexbuilder/issues",
+        "Documentation": "https://github.com/Geeks-Trident-LLC/regexgenerator/wiki",
+        "Source": "https://github.com/Geeks-Trident-LLC/regexgenerator",
+        "Tracker": "https://github.com/Geeks-Trident-LLC/regexgenerator/issues",
     },
     python_requires=">=3.9",
     include_package_data=True,
     entry_points={
         "console_scripts": [
-            "regexbuilder = regexbuilder.main:execute",
-            "regexbuilder-gui = regexbuilder.application:execute",
-            "regexbuilder-app = regexbuilder.application:execute",
-            "regex-builder-gui = regexbuilder.application:execute",
-            "regex-builder-app = regexbuilder.application:execute",
+            "regexgenerator = regexgenerator.main:execute",
+            "regexgenerator-gui = regexgenerator.application:execute",
+            "regexgenerator-app = regexgenerator.application:execute",
+            "regex-generator-gui = regexgenerator.application:execute",
+            "regex-generator-app = regexgenerator.application:execute",
         ]
     },
     classifiers=[
@@ -75,5 +75,5 @@ setup(
         "Topic :: Scientific/Engineering",
         "Topic :: Text Processing",
     ],
-    keywords="regex, regex builder, regexbuilder, text parsing, automation, regular express",
+    keywords="regex, regex builder, regex generator, text parsing, automation, regular express",
 )

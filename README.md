@@ -1,8 +1,8 @@
 # 📖 Overview
 
-The **Regexbuilder** application is a powerful utility designed to simplify the creation of regular expression patterns. Instead of manually writing complex regex syntax, developers can generate accurate patterns directly from snippets or structured input data. This reduces the time spent on repetitive coding tasks and minimizes errors.  
+The **Regex Generator** application is a powerful utility designed to simplify the creation of regular expression patterns. Instead of manually writing complex regex syntax, developers can generate accurate patterns directly from snippets or structured input data. This reduces the time spent on repetitive coding tasks and minimizes errors.  
 
-Regexbuilder plays a key role in supporting the **TextFSMGenerator**, which builds TextFSM templates for parsing and structuring unformatted text. By integrating with Regexbuilder, TextFSMGenerator can more efficiently produce templates that capture the desired data fields, making text parsing faster, cleaner, and more reliable.  
+Regex Generator plays a key role in supporting the **TextFSMGenerator**, which builds TextFSM templates for parsing and structuring unformatted text. By integrating with Regexgenerator, TextFSMGenerator can more efficiently produce templates that capture the desired data fields, making text parsing faster, cleaner, and more reliable.  
 
 ---
 
@@ -26,10 +26,10 @@ Regexbuilder plays a key role in supporting the **TextFSMGenerator**, which buil
 
 ## ⚙️ Installation  
 
-You can install the **regexbuilder** package directly from PyPI using `pip`:  
+You can install the **regexgenerator** package directly from PyPI using `pip`:  
 
 ```bash
-pip install regexbuilder
+pip install regexgenerator
 ```  
 
 ### ✅ Requirements  
@@ -49,13 +49,13 @@ This project relies on the following Python packages to ensure smooth functional
 
 ## 🐞 Bugs & Feature Requests  
 
-If you encounter a bug or have a feature request, please submit it through the official [GitHub Issue Tracker](https://github.com/Geeks-Trident-LLC/regexbuilder/issues). This helps us track, prioritize, and resolve issues efficiently while keeping all feedback in one place.
+If you encounter a bug or have a feature request, please submit it through the official [GitHub Issue Tracker](https://github.com/Geeks-Trident-LLC/regexgenerator/issues). This helps us track, prioritize, and resolve issues efficiently while keeping all feedback in one place.
 
 ---
 
 ## 🛣️ Roadmap  
 
-- ⚠️ **Deprecation Notice** – *Regex Pro Edition* and *Enterprise Edition* will be deprecated and removed during the upcoming migration to 🚀 `regexbuilder` version **1.x**.  
+- ⚠️ **Deprecation Notice** – *Regex Pro Edition* and *Enterprise Edition* will be deprecated and removed during the upcoming migration to 🚀 `regexgenerator` version **1.x**.  
 - 📌 **Future Enhancements** – Continued improvements to regex generation, expanded integration with parsing libraries, and streamlined developer workflows.  
 - 🔍 **Testing & Feedback** – Early adopters are encouraged to experiment and provide feedback to help shape the stable release.  
 
@@ -64,7 +64,7 @@ If you encounter a bug or have a feature request, please submit it through the o
 
 This project is licensed under the **BSD 3‑Clause License**.  
 You can review the full license text here:  
-- [BSD 3‑Clause License](https://github.com/Geeks-Trident-LLC/regexbuilder/blob/develop/LICENSE)  
+- [BSD 3‑Clause License](https://github.com/Geeks-Trident-LLC/regexgenerator/blob/develop/LICENSE)  
 
 ### 🔍 What the BSD 3‑Clause License Means  
 - ✅ **Freedom to Use** – You may use this library in both open‑source and proprietary projects.  

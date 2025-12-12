@@ -1,4 +1,4 @@
-"""Module containing the attributes for regexbuilder."""
+"""Module containing the attributes for regexgenerator."""
 
 from os import path
 from textwrap import dedent
@@ -47,7 +47,7 @@ class Data:
         PurePath(
             Path.home(),
             '.geekstrident',
-            'regexbuilder',
+            'regexgenerator',
             'user_references.yaml'
         )
     )
@@ -71,7 +71,7 @@ class Data:
     company_url = 'https://www.geekstrident.com/'
 
     # URL
-    repo_url = 'https://github.com/Geeks-Trident-LLC/regexbuilder'
+    repo_url = 'https://github.com/Geeks-Trident-LLC/regexgenerator'
     documentation_url = path.join(repo_url, 'blob/develop/README.md')
     license_url = path.join(repo_url, 'blob/develop/LICENSE')
 

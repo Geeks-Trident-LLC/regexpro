@@ -2,9 +2,9 @@ import pytest       # noqa
 import re
 from textwrap import dedent
 
-from regexbuilder import LinePattern
-from regexbuilder import PatternBuilder
-from regexbuilder import MultilinePattern
+from regexgenerator import LinePattern
+from regexgenerator import PatternBuilder
+from regexgenerator import MultilinePattern
 
 
 class TestPatternBuilder:

@@ -1,6 +1,6 @@
 import pytest       # noqa
 import re
-from regexbuilder import ElementPattern
+from regexgenerator import ElementPattern
 
 
 class TestElementPatternF:
