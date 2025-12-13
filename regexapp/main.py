@@ -19,7 +19,6 @@ from regexapp.application import Application
 from regexapp import RegexBuilder
 from regexapp.core import enclose_string
 
-from genericlib import Printer
 from genericlib import ECODE
 
 
@@ -75,7 +74,9 @@ def show_dependency(options):
             lst.append('  + Package: {0[package]}'.format(pkg))
             lst.append('             {0[url]}'.format(pkg))
 
-        Printer.print(lst)
+        width = max(len(item) for item in lst)
+        txt = '\n'.join('| {1:{0}} |'.format(width, item) for item in lst)
+        print('+-{0}-+\n{1}\n+-{0}-+'.format(width * '-', txt))
         sys.exit(ECODE.SUCCESS)
 
 
