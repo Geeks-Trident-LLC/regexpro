@@ -1,7 +1,6 @@
 """Module containing the attributes for regexapp."""
 
 from os import path
-from textwrap import dedent
 
 from pathlib import Path
 from pathlib import PurePath
@@ -91,7 +90,7 @@ class Data:
             ),
             gtgenlib=dict(
                 package=cls.gtgenlib_text,
-                url=""
+                url=cls.gtgenlib_link
             )
         )
         return dependencies
