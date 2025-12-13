@@ -80,6 +80,32 @@ def show_dependency(options):
         sys.exit(ECODE.SUCCESS)
 
 
+def show_version(options):
+    """
+    Display the current regexapp version and exit.
+
+    This function checks whether the `--version` flag was provided
+    in the parsed CLI options. If so, it imports the `version`
+    string from the `regexapp` package, prints it to stdout, and
+    terminates the process with a success exit code.
+
+    Parameters
+    ----------
+    options : argparse.Namespace
+        Parsed command-line options. Must contain the `version` flag.
+
+    Returns
+    -------
+    None
+        Prints the application version and exits with
+        ``ECODE.SUCCESS`` if `--version` is specified.
+    """
+    if options.version:
+        from regexapp import version
+        print(f'regexapp {version}')
+        sys.exit(ECODE.SUCCESS)
+
+
 class Cli:
     """
     Console interface for regexapp.
@@ -142,7 +168,12 @@ class Cli:
 
         parser.add_argument(
             '-d', '--dependency', action='store_true',
-            help='Show RegexBuilder dependent package(s).'
+            help='Show RegexApp dependent package(s).'
+        )
+
+        parser.add_argument(
+            '-v', '--version', action='store_true',
+            help='Show RegexApp version.'
         )
 
         self.parser = parser
@@ -317,6 +348,7 @@ class Cli:
             regex generation, test execution, and script creation
             based on CLI flags.
         """
+        show_version(self.options)
         show_dependency(self.options)
         run_gui_application(self.options)
         self.validate_cli_flags()
