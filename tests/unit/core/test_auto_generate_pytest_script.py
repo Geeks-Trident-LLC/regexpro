@@ -9,15 +9,15 @@ normalized test data and ensures consistency across test runs.
 Usage
 -----
 Run pytest in the project root to execute these tests:
-    $ pytest tests/unit/test_autogenerate_pytest_script.py
+    $ pytest tests/unit/core/test_autogenerate_pytest_script.py
 """
 
 
 from regexapp import RegexBuilder
 from regexapp import DynamicTestScriptBuilder
 
-from . import get_test_script         # import from tests/unit/__init__.py
-from . import normalize_string_output # import from tests/unit/__init__.py
+from tests.unit import get_test_script         # import from tests/unit/__init__.py
+from tests.unit import normalize_string_output # import from tests/unit/__init__.py
 
 
 @normalize_string_output
@@ -75,9 +75,6 @@ class TestAutoGeneratePytestScript:
             user_data=self.user_data,
             test_data=self.test_data,
             is_line=True,   # Instructs RegexApp to generate a single-line regex pattern
-            author='user1',
-            email='user1@abcxyz.com',
-            company='ABC XYZ LLC',
         )
         generated_test_script = factory.create_pytest()
         expected_test_script = get_test_script(self.verified_test_script_filename)
@@ -92,9 +89,6 @@ class TestAutoGeneratePytestScript:
         factory = DynamicTestScriptBuilder(
             test_info=[self.user_data, self.test_data],
             is_line=True,   # Instructs RegexApp to generate a single-line regex pattern
-            author='user1',
-            email='user1@abcxyz.com',
-            company='ABC XYZ LLC',
         )
         generated_test_script = factory.create_pytest()
         expected_test_script = get_test_script(self.verified_test_script_filename)

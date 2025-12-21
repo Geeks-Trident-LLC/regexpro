@@ -16,8 +16,8 @@ Run pytest in the project root to execute these tests:
 from regexapp import RegexBuilder
 from regexapp import DynamicTestScriptBuilder
 
-from . import get_test_script         # import from tests/unit/__init__.py
-from . import normalize_string_output # import from tests/unit/__init__.py
+from tests.unit import get_test_script         # import from tests/unit/__init__.py
+from tests.unit import normalize_string_output # import from tests/unit/__init__.py
 
 
 @normalize_string_output
@@ -26,8 +26,9 @@ def get_user_data():
     Provide normalized sample user data for test script generation.
     """
     user_data = """
-        phrase(var_subject) is digits(var_degree) degrees word(var_unit).
-           IPv4 Address. . . . . . . . . . . : ipv4_address(var_ipv4_addr)(word(var_status))
+        I have words(var_v1).
+        My friend has words(var_v2).
+        I don't have words(var_v3).
     """
     return user_data
 
@@ -38,20 +39,25 @@ def get_test_data():
     Provide normalized sample test data for unittest script validation.
     """
     test_data = """
-        today temperature is 75 degrees fahrenheit.
-        the highest temperature ever recorded on Earth is 134 degrees fahrenheit.
-           IPv4 Address. . . . . . . . . . . : 192.168.0.1(Preferred)
+        First line
+        I have computer.
+        Other line
+        My friend has game console.
+        Another line ....
+        I don't have digital camera.
+        ...
+        last line
     """
     return test_data
 
 
-class TestAutoGenerateUnittestScript:
+class TestAutoGenerateUnittestScriptForMultiline:
     """
     Unit tests for automated unittest script generation.
 
     This class validates that both `RegexBuilder` and
     `DynamicTestScriptBuilder` produce unittest scripts identical to a
-    reference script stored in `tests/unit/data/unittest_script.txt`.
+    reference script stored in `tests/unit/data/core/unittest_script_for_multiline.txt`.
 
     Notes
     -----
@@ -62,22 +68,19 @@ class TestAutoGenerateUnittestScript:
     """
     user_data = get_user_data()
     test_data = get_test_data()
-    verified_test_script_filename = 'unittest_script.txt'
+    verified_test_script_filename = 'unittest_script_for_multiline.txt'
 
     def test_generating_unittest_using_regex_builder(self):
         """
         Verify that `RegexBuilder.create_unittest()` produces a unittest script
         identical to the expected reference output when the `is_line` flag
-        is enabled (single-line regex generation).
+        is enabled (whole text regex generation).
         """
 
         factory = RegexBuilder(
             user_data=self.user_data,
             test_data=self.test_data,
-            is_line=True,   # Instructs RegexApp to generate a single-line regex pattern
-            author='user1',
-            email='user1@abcxyz.com',
-            company='ABC XYZ LLC',
+            is_line=False,   # Instructs RegexApp to generate a whole text regex pattern
         )
         generated_test_script = factory.create_unittest()
         expected_test_script = get_test_script(self.verified_test_script_filename)
@@ -87,14 +90,11 @@ class TestAutoGenerateUnittestScript:
         """
         Verify that `DynamicTestScriptBuilder.create_unittest()` produces a unittest
         script identical to the expected reference output when the `is_line` flag
-        is enabled (single-line regex generation).
+        is disenabled (whole text regex generation).
         """
         factory = DynamicTestScriptBuilder(
             test_info=[self.user_data, self.test_data],
-            is_line=True,   # Instructs RegexApp to generate a single-line regex pattern
-            author='user1',
-            email='user1@abcxyz.com',
-            company='ABC XYZ LLC',
+            is_line=False,   # Instructs RegexApp to generate a whole text regex pattern
         )
         generated_test_script = factory.create_unittest()
         expected_test_script = get_test_script(self.verified_test_script_filename)

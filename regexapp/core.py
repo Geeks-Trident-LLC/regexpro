@@ -109,7 +109,6 @@ def create_docstring(test_framework='unittest',
     lst = list()
     author = author or company
     lst.append(fmt.format(lang, test_framework, regexapp.edition))
-    lst.append('')
     author and lst.append(fmt1.format(author))
     email and lst.append(fmt2.format(email))
     company and company != author and lst.append(fmt3.format(company))
